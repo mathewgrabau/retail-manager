@@ -2,6 +2,7 @@
 using RetailManager_WPF_UI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace RetailManager_WPF_UI
@@ -16,6 +17,22 @@ namespace RetailManager_WPF_UI
         public Bootstrapper()
         {
             Initialize();
+        }
+
+        protected override void Configure()
+        {
+            _container.Instance(_container);
+
+            // Need to register the Caliburn parts required.
+            _container.Singleton<IWindowManager, WindowManager>()
+                .Singleton<IEventAggregator, EventAggregator>();
+
+            // Add all of your ViewModels
+            GetType().Assembly.GetTypes()
+                .Where(t => t.IsClass)
+                .Where(t => t.Name.EndsWith("ViewModel"))
+                .ToList()
+                .ForEach(vmt=>_container.RegisterPerRequest(vmt, vmt.ToString(), vmt));
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
