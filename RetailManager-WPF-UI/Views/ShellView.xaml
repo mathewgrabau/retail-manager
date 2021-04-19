@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:RetailManager_WPF_UI.Views"
         mc:Ignorable="d"
         Title="ShellView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File"></MenuItem>
+            <MenuItem Header="_Account">
+                <MenuItem x:Name="LoginScreenMenuItem" Header="_Login"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <ContentControl x:Name="ActiveItem" Margin="5" />
+        </Grid>
+    </DockPanel>
 </Window>
