@@ -15,6 +15,7 @@ namespace RetailManager_WPF_UI.ViewModels
         {
             // Need to open the form for login first
             _loginViewModel = loginViewModel;
+            ActivateItem(_loginViewModel);
         }
     }
 }

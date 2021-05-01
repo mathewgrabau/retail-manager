@@ -1,9 +1,11 @@
 ﻿using Caliburn.Micro;
+using RetailManager_WPF_UI.Helpers;
 using RetailManager_WPF_UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace RetailManager_WPF_UI
 {
@@ -17,6 +19,10 @@ namespace RetailManager_WPF_UI
         public Bootstrapper()
         {
             Initialize();
+
+            // Register the helper to proeprly work with Caliburn and the PasswordBox control.
+            ConventionManager.AddElementConvention<PasswordBox>(PasswordBoxHelper.BoundPasswordProperty,
+                "Password", "PasswordChanged");
         }
 
         protected override void Configure()
