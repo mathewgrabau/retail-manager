@@ -20,6 +20,7 @@ namespace RetailManager_WPF_UI.ViewModels
             {
                 _username = value;
                 NotifyOfPropertyChange(() => Username);
+                NotifyOfPropertyChange(() => CanLogin);
             }
         }
 
@@ -34,6 +35,7 @@ namespace RetailManager_WPF_UI.ViewModels
             {
                 _password = value;
                 NotifyOfPropertyChange(() => Password);
+                NotifyOfPropertyChange(() => CanLogin);
             }
         }
 
@@ -42,19 +44,22 @@ namespace RetailManager_WPF_UI.ViewModels
 
         }
 
-        public bool CanLogin(string username, string password)
+        public bool CanLogin
         {
-            bool allow = false;
-
-            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            get
             {
-                allow = true;
-            }
+                bool allow = false;
 
-            return allow;
+                if (!string.IsNullOrEmpty(_username) && !string.IsNullOrEmpty(_password))
+                {
+                    allow = true;
+                }
+
+                return allow;
+            }
         }
 
-        public void Login(string username, string password)
+        public void Login()
         {
             Console.WriteLine("Logging in now");
         }
