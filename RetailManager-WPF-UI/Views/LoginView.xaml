@@ -21,20 +21,28 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <!-- Row to consume the remaining space -->
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
                    HorizontalAlignment="Center" Margin="0,0,0,20" FontSize="32">Login Form</TextBlock>
+        
+        <!-- Error message row-->
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
+                   x:Name="ErrorMessage" Text="This is an error message"
+                   Margin="0 0 0 20" Foreground="Red" 
+                   MaxWidth="300" />
+
         <!-- Username row -->
-        <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">Username: </TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="2" x:Name="Username" MinWidth="100" Margin="0,0,0,10" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" MinWidth="150">Username: </TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name="Username" MinWidth="150" Margin="0,0,0,10" />
         
         <!-- Password row -->
-        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">Password: </TextBlock>
-        <PasswordBox Grid.Row="2" Grid.Column="2" x:Name="Password" MinWidth="100" Margin="0,0,0,10" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" MinWidth="150">Password: </TextBlock>
+        <PasswordBox Grid.Row="3" Grid.Column="2" x:Name="Password" MinWidth="150" Margin="0,0,0,10" />
     
         <!-- buttons row -->
-        <Button Grid.Row="3" x:Name="Login" Grid.Column="1" Grid.ColumnSpan="2" Padding="20 5" HorizontalAlignment="Center">Login</Button>
+        <Button Grid.Row="4" x:Name="Login" Grid.Column="1" Grid.ColumnSpan="2" Padding="20 5" HorizontalAlignment="Center">Login</Button>
     </Grid>
 </UserControl>
