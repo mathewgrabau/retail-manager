@@ -31,7 +31,8 @@ namespace RetailManager_WPF_UI
 
             // Need to register the Caliburn parts required.
             _container.Singleton<IWindowManager, WindowManager>()
-                .Singleton<IEventAggregator, EventAggregator>();
+                .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<IAPIHelper, APIHelper>();
 
             // Add all of your ViewModels
             GetType().Assembly.GetTypes()

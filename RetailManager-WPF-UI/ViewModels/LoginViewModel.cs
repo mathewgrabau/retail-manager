@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using RetailManager_WPF_UI.Helpers;
+using RetailManager_WPF_UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,9 +41,11 @@ namespace RetailManager_WPF_UI.ViewModels
             }
         }
 
-        public LoginViewModel()
-        {
+        private IAPIHelper _apiHelper;
 
+        public LoginViewModel(IAPIHelper apiHelper)
+        {
+            _apiHelper = apiHelper;
         }
 
         public bool CanLogin
@@ -59,9 +63,16 @@ namespace RetailManager_WPF_UI.ViewModels
             }
         }
 
-        public void Login()
+        public async Task Login()
         {
-            Console.WriteLine("Logging in now");
+            try
+            {
+                AuthenticatedUser result = await _apiHelper.Authenticate(Username, Password);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+            }
         }
     }
 }
