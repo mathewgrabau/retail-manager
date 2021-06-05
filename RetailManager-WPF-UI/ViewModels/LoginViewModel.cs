@@ -41,6 +41,28 @@ namespace RetailManager_WPF_UI.ViewModels
             }
         }
 
+        public bool IsErrorVisible
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(_errorMessage);
+            }
+        }
+
+        private string _errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set 
+            { 
+                _errorMessage = value;
+                NotifyOfPropertyChange(() => IsErrorVisible);
+                NotifyOfPropertyChange(() => ErrorMessage);
+            }
+        }
+
+
         private IAPIHelper _apiHelper;
 
         public LoginViewModel(IAPIHelper apiHelper)
@@ -67,11 +89,12 @@ namespace RetailManager_WPF_UI.ViewModels
         {
             try
             {
+                ErrorMessage = string.Empty;
                 AuthenticatedUser result = await _apiHelper.Authenticate(Username, Password);
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.ToString());
+                ErrorMessage = e.Message;
             }
         }
     }

@@ -30,19 +30,20 @@
         
         <!-- Error message row-->
         <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
+                   Visibility="{Binding IsErrorVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
                    x:Name="ErrorMessage" Text="This is an error message"
                    Margin="0 0 0 20" Foreground="Red" 
-                   MaxWidth="300" />
+                   MaxWidth="300" TextWrapping="Wrap" />
 
         <!-- Username row -->
-        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" MinWidth="150">Username: </TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="2" x:Name="Username" MinWidth="150" Margin="0,0,0,10" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,0,8,10">Username: </TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name="Username" MinWidth="350" Margin="0,0,0,10" />
         
         <!-- Password row -->
-        <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" MinWidth="150">Password: </TextBlock>
-        <PasswordBox Grid.Row="3" Grid.Column="2" x:Name="Password" MinWidth="150" Margin="0,0,0,10" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,0,8,10">Password: </TextBlock>
+        <PasswordBox Grid.Row="3" Grid.Column="2" x:Name="Password" MinWidth="350" Margin="0,0,0,10" />
     
         <!-- buttons row -->
-        <Button Grid.Row="4" x:Name="Login" Grid.Column="1" Grid.ColumnSpan="2" Padding="20 5" HorizontalAlignment="Center">Login</Button>
+        <Button Grid.Row="4" x:Name="Login" Grid.Column="1" Grid.ColumnSpan="2" Padding="20 3" HorizontalAlignment="Center">Login</Button>
     </Grid>
 </UserControl>
