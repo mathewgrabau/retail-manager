@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RetailManager_WPF_UI.Models
+namespace RetailManager.Desktop.Models
 {
     public class AuthenticatedUser
     {

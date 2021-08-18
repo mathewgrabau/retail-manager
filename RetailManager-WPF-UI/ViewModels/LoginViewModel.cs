@@ -1,11 +1,12 @@
 ﻿using Caliburn.Micro;
 using RetailManager_WPF_UI.Helpers;
-using RetailManager_WPF_UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RetailManager.Desktop.Library.Api;
+using RetailManager.Desktop.Models;
 
 namespace RetailManager_WPF_UI.ViewModels
 {
@@ -91,6 +92,10 @@ namespace RetailManager_WPF_UI.ViewModels
             {
                 ErrorMessage = string.Empty;
                 AuthenticatedUser result = await _apiHelper.Authenticate(Username, Password);
+
+                // Retrieve the additional information about the user
+                await _apiHelper.GetLoggedInUserInfo(result.AccessToken);
+                
             }
             catch (Exception e)
             {

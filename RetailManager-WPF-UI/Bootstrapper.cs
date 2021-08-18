@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using RetailManager.Desktop.Library.Api;
+using RetailManager.Desktop.Library.Models;
 using RetailManager_WPF_UI.Helpers;
 using RetailManager_WPF_UI.ViewModels;
 using System;
@@ -32,6 +34,7 @@ namespace RetailManager_WPF_UI
             // Need to register the Caliburn parts required.
             _container.Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<ILoggedInUserViewModel, LoggedInUserModel>()
                 .Singleton<IAPIHelper, APIHelper>();
 
             // Add all of your ViewModels
