@@ -72,10 +72,10 @@ namespace RetailManager_WPF_UI.ViewModels
                 bool output = false;
 
                 // Make sure there is something selected and a valid quantity
-                if (int.TryParse(ItemQuantity, out int quantity))
-                {
+                //if (int.TryParse(ItemQuantity, out int quantity))
+                //{
 
-                }
+                //}
 
                 return output;
             }

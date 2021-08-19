@@ -7,11 +7,21 @@ using System.Text;
 using System.Threading.Tasks;
 using RetailManager.Desktop.Library.Api;
 using RetailManager.Desktop.Models;
+using RetailManager_WPF_UI.EventModels;
 
 namespace RetailManager_WPF_UI.ViewModels
 {
     public class LoginViewModel : Screen
     {
+        private IAPIHelper _apiHelper;
+        private IEventAggregator _events;
+
+        public LoginViewModel(IAPIHelper apiHelper, IEventAggregator events)
+        {
+            _apiHelper = apiHelper;
+            _events = events;
+        }
+
         private string _username;
         public string Username
         {
@@ -63,14 +73,6 @@ namespace RetailManager_WPF_UI.ViewModels
             }
         }
 
-
-        private IAPIHelper _apiHelper;
-
-        public LoginViewModel(IAPIHelper apiHelper)
-        {
-            _apiHelper = apiHelper;
-        }
-
         public bool CanLogin
         {
             get
@@ -95,6 +97,9 @@ namespace RetailManager_WPF_UI.ViewModels
 
                 // Retrieve the additional information about the user
                 await _apiHelper.GetLoggedInUserInfo(result.AccessToken);
+
+                // Push the event for the login
+                _events.PublishOnUIThread(new LogOnEvent());
                 
             }
             catch (Exception e)
