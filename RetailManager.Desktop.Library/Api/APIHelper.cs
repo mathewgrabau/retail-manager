@@ -23,6 +23,14 @@ namespace RetailManager.Desktop.Library.Api
             _currentUser = loggedInUser;
         }
 
+        public HttpClient Client
+        {
+            get
+            {
+                return _client;
+            }
+        }
+
         private void InitializeClient()
         {
             string apiAddress = ConfigurationManager.AppSettings["api"];

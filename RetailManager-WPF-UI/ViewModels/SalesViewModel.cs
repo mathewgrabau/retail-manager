@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using RetailManager.Desktop.Library.Api;
+using RetailManager.Desktop.Library.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,9 +12,16 @@ namespace RetailManager_WPF_UI.ViewModels
 {
     public class SalesViewModel : Screen
     {
-        private BindingList<string> _products;
+        IProductEndpoint _productEndpoint;
 
-        public BindingList<string> Products
+        public async Task SalesViewModel(IProductEndpoint productEndpoint)
+        {
+            _productEndpoint = productEndpoint;
+        }
+
+        private BindingList<ProductModel> _products;
+
+        public BindingList<ProductModel> Products
         {
             get { return _products; }
             set
@@ -119,6 +128,12 @@ namespace RetailManager_WPF_UI.ViewModels
         public void Checkout()
         {
 
+        }
+
+        public async Task LoadProducts()
+        {
+            var productList = await _productEndpoint.GetAll();
+            Products = new BindingList<ProductModel>(productList);
         }
     }
 }

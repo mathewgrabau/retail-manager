@@ -29,7 +29,8 @@ namespace RetailManager_WPF_UI
 
         protected override void Configure()
         {
-            _container.Instance(_container);
+            _container.Instance(_container)
+                .PerRequest<IProductEndpoint, ProductEndpoint>();
 
             // Need to register the Caliburn parts required.
             _container.Singleton<IWindowManager, WindowManager>()
