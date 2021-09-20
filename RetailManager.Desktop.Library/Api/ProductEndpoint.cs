@@ -15,7 +15,7 @@ namespace RetailManager.Desktop.Library.Api
             _helper = helper;
         }
 
-        public async Task<List<string>> GetAll()
+        public async Task<List<ProductModel>> GetAll()
         {
             // Perform call and retunr it
             using (HttpResponseMessage response = await _helper.Client.GetAsync("/api/Product"))

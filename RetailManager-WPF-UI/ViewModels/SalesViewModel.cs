@@ -14,10 +14,17 @@ namespace RetailManager_WPF_UI.ViewModels
     {
         IProductEndpoint _productEndpoint;
 
-        public async Task SalesViewModel(IProductEndpoint productEndpoint)
+        public SalesViewModel(IProductEndpoint productEndpoint)
         {
             _productEndpoint = productEndpoint;
         }
+
+        protected override async void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+            await LoadProducts();
+        }
+
 
         private BindingList<ProductModel> _products;
 
@@ -130,7 +137,11 @@ namespace RetailManager_WPF_UI.ViewModels
 
         }
 
-        public async Task LoadProducts()
+        /// <summary>
+        /// Perform the load of the product.
+        /// </summary>
+        /// <returns></returns>
+        private async Task LoadProducts()
         {
             var productList = await _productEndpoint.GetAll();
             Products = new BindingList<ProductModel>(productList);
