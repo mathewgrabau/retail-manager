@@ -38,6 +38,19 @@ namespace RetailManager_WPF_UI.ViewModels
             }
         }
 
+        private ProductModel _selectedProduct;
+
+        public ProductModel SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set
+            {
+                _selectedProduct = value;
+                NotifyOfPropertyChange(nameof(SelectedProduct));
+            }
+        }
+
+
         private BindingList<string> _cartContents;
 
         public BindingList<string> CartContents
@@ -88,10 +101,10 @@ namespace RetailManager_WPF_UI.ViewModels
                 bool output = false;
 
                 // Make sure there is something selected and a valid quantity
-                //if (int.TryParse(ItemQuantity, out int quantity))
-                //{
-
-                //}
+                if (SelectedProduct?.QuantityInStock >= ItemQuantity)
+                {
+                    output = true;
+                }
 
                 return output;
             }
